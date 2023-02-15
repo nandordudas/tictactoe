@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      args:
+        VARIANT: 18
+        USERNAME: node
+    env_file: ../.env
+    command: sleep infinity
+    volumes:
+      - ..:/workspace:cached
+      - node-modules:/workspace/node_modules
+      - pnpm-store:/workspace/.pnpm-store
+
+volumes:
+  node-modules:
+  pnpm-store:

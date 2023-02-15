@@ -1,0 +1,78 @@
+{
+  "name": "Node.js & TypeScript",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "postCreateCommand": {
+    "setupFolderPrivileges": "sudo chown node .pnpm-store node_modules",
+    "installDependencies": "pnpm install"
+  },
+  "features": {
+    "ghcr.io/devcontainers-contrib/features/zsh-plugins:0.0.2": {
+      "plugins": "git F-Sy-H",
+      "omzPlugins": "https://github.com/z-shell/F-Sy-H"
+    },
+    "ghcr.io/devcontainers-contrib/features/pnpm:2": {
+      "version": "latest"
+    },
+    "ghcr.io/stuartleeks/dev-container-features/shell-history:0.0.3": {
+      "version": "latest"
+    }
+  },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "antfu.unocss",
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "mutantdino.resourcemonitor",
+        "streetsidesoftware.code-spell-checker",
+        "usernamehw.errorlens"
+      ],
+      "settings": {
+        "files.encoding": "utf8",
+        "files.eol": "\n",
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false,
+        "files.insertFinalNewline": true,
+        "files.trimTrailingWhitespace": true,
+        "editor.wordWrapColumn": 120,
+        "editor.rulers": [
+          80,
+          120
+        ],
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true,
+          "source.fixAll": false,
+          "source.organizeImports": false
+        },
+        "editor.formatOnSave": false,
+        "eslint.codeActionsOnSave.mode": "problems",
+        "eslint.quiet": false,
+        "eslint.validate": [
+          "html",
+          "json",
+          "json5",
+          "jsonc",
+          "markdown",
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "yaml"
+        ],
+        "errorLens.excludeBySource": [
+          "cSpell",
+          "eslint"
+        ],
+        "errorLens.fontStyleItalic": true,
+        "errorLens.fontWeight": "100",
+        "unocss.root": [
+          "/workspace/apps/react-app"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@workspace/commitlint-config",
+  "version": "0.1.0",
+  "private": true,
+  "exports": {
+    ".": {
+      "require": "./src/index.cjs"
+    }
+  },
+  "main": "./src/index.cjs",
+  "files": [
+    "./src/index.cjs"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist node_modules",
+    "lint": "eslint --cache ."
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
+    "@commitlint/types": "^17.4.4",
+    "@workspace/eslint-config": "workspace:*",
+    "eslint": "^8.34.0",
+    "husky": "^8.0.3"
+  },
+  "eslintConfig": {
+    "extends": "@workspace"
+  }
+}

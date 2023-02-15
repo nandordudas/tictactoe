@@ -1,0 +1,29 @@
+{
+  "name": "tictactoe",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@7.27.0",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.14.0",
+    "pnpm": ">=7.27.0"
+  },
+  "scripts": {
+    "clean": "pnpm --recursive --parallel clean && rm -rf node_modules/*",
+    "lint:fix": "pnpm lint --fix",
+    "lint": "pnpm --recursive --parallel lint",
+    "prepare": "pnpm setup:husky",
+    "release": "bumpp --commit --push --tag",
+    "setup:husky": "husky install packages/commitlint/hooks",
+    "test": "pnpm --recursive --stream test",
+    "typecheck": "pnpm --recursive --parallel typecheck"
+  },
+  "devDependencies": {
+    "@workspace/commitlint-config": "workspace:*",
+    "@workspace/eslint-config": "workspace:*",
+    "bumpp": "^8.2.1"
+  },
+  "eslintConfig": {
+    "extends": "@workspace"
+  }
+}

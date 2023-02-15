@@ -1,0 +1,23 @@
+{
+  "name": "@workspace/eslint-config",
+  "version": "0.1.0",
+  "private": true,
+  "exports": {
+    ".": {
+      "require": "./src/index.cjs"
+    }
+  },
+  "main": "./src/index.cjs",
+  "files": [
+    "./src/index.cjs"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist node_modules",
+    "lint": "eslint --cache --config ./src/index.cjs ."
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.35.2",
+    "@types/eslint": "^8.21.1",
+    "eslint": "^8.34.0"
+  }
+}
