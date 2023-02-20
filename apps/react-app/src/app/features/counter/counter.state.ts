@@ -1,5 +1,5 @@
 import type { CounterState } from './types'
 
-export const initialState: CounterState = {
+export const initialCounterState: CounterState = {
   value: 0,
 }

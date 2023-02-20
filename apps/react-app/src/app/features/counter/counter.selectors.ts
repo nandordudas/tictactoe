@@ -1,10 +1,10 @@
 import { createSelector } from '@reduxjs/toolkit'
 
-import type { RootState } from '~/app/store'
+import type { RootState } from '~/app/type'
 
-const _rootSelector = (state: RootState) => state.counter
+const rootState = (state: RootState) => state.counter
 
 export const selectCount = createSelector(
-  _rootSelector,
+  rootState,
   state => state.value,
 )

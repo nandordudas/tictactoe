@@ -1,12 +1,16 @@
 import App from './App'
-import { screen } from './test/utils'
-import { renderWithProviders } from './test/utils/render-with-providers'
+import { renderWithProviders, screen } from './test/utils'
 
 describe('App', () => {
-  it('should display application component', () => {
-    const title = 'Vite + React'
+  const title = 'Vite + React'
 
+  it('should display application component with title', () => {
     renderWithProviders(<App title={title} />)
+    expect(screen.getByText(title)).toBeInTheDocument()
+  })
+
+  it('should display application component without title', () => {
+    renderWithProviders(<App />)
     expect(screen.getByText(title)).toBeInTheDocument()
   })
 })

@@ -2,8 +2,8 @@ import type { PreloadedState } from '@reduxjs/toolkit'
 
 import { Counter } from '~/app/features/counter/components/counter/counter'
 import { CounterTestIds } from '~/app/features/counter/components/counter/counter.constants'
-import { initialState } from '~/app/features/counter/counter.state'
-import type { RootState } from '~/app/store'
+import { initialCounterState } from '~/app/features/counter/counter.state'
+import type { RootState } from '~/app/type'
 import { screen, userEvent } from '~/test/utils'
 import { renderWithProviders } from '~/test/utils/render-with-providers'
 
@@ -12,7 +12,7 @@ describe('Counter', () => {
 
   beforeEach(() => {
     preloadedState = {
-      counter: { ...initialState },
+      counter: { ...initialCounterState },
     }
   })
 
