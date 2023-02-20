@@ -7,7 +7,7 @@ interface Props {
 }
 
 const App = ({ title }: Props) => {
-  // yes, we can use default parameter value or null coalescing operator, but not for know
+  // INFO: yes, we can use default parameter value or null coalescing operator, but not for know
   title = isUndefined(title) ? 'Vite + React' : title
 
   return (

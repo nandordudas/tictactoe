@@ -1,18 +1,31 @@
-import type { PreloadedState } from '@reduxjs/toolkit'
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { type Middleware, type PreloadedState, combineReducers, configureStore } from '@reduxjs/toolkit'
+import thunk from 'redux-thunk'
 
-import { counterSlice } from './features/counter/counter.slice'
-import type { RootState } from './store'
+import { StoreNames } from './constants'
+import counterReducer from './features/counter/counter.slice'
 
-export const reducer = combineReducers({
-  counter: counterSlice.reducer,
+const middlewares: Middleware[] = [thunk]
+
+if (import.meta.env.DEV) {
+  const { createLogger } = await import('redux-logger')
+
+  const logger = createLogger({
+    collapsed: true,
+    timestamp: false,
+  })
+
+  middlewares.push(logger)
+}
+
+const reducer = combineReducers({
+  [StoreNames.Counter]: counterReducer,
 })
 
-export const setupStore = (preloadedState: PreloadedState<RootState> = {}) => (
-  configureStore({
-    reducer,
+export const setupStore = (preloadedState: PreloadedState<ReturnType<typeof reducer>> = {}) => {
+  return configureStore({
+    devTools: import.meta.env.DEV,
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(middlewares),
     preloadedState,
+    reducer,
   })
-)
-
-export type PreloadedStore = ReturnType<typeof setupStore>
+}

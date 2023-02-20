@@ -1,18 +1,17 @@
-import { counterReducer, decrement, increment } from '~/app/features/counter/counter.slice'
-import { initialState } from '~/app/features/counter/counter.state'
+import type { PreloadedState } from '@reduxjs/toolkit'
+
+import counterReducer, { decrement, increment } from '~/app/features/counter/counter.slice'
+import { initialCounterState } from '~/app/features/counter/counter.state'
 import type { CounterState } from '~/app/features/counter/types'
-import { setupStore } from '~/app/reducer'
+import type { RootState } from '~/app/type'
 
 describe('counter reducer', () => {
-  let state: CounterState
-  let store: ReturnType<typeof setupStore>
+  let preloadedState: PreloadedState<RootState>
 
   beforeEach(() => {
-    store = setupStore({
-      counter: { ...initialState },
-    })
-
-    state = store.getState().counter
+    preloadedState = {
+      counter: { ...initialCounterState },
+    }
   })
 
   it('should handle initial state', () => {
@@ -20,19 +19,19 @@ describe('counter reducer', () => {
       value: 0,
     }
 
-    expect(counterReducer(state, { type: 'unknown' })).toEqual(expectedState)
+    expect(counterReducer(preloadedState.counter, { type: 'unknown' })).toEqual(expectedState)
   })
 
   it('should handle increment', () => {
     const expectedValue = 1
-    const currentValue = counterReducer(state, increment()).value
+    const { value: currentValue } = counterReducer(preloadedState.counter, increment())
 
     expect(currentValue).toEqual(expectedValue)
   })
 
   it('should handle decrement', () => {
     const expectedValue = -1
-    const currentValue = counterReducer(state, decrement()).value
+    const { value: currentValue } = counterReducer(preloadedState.counter, decrement())
 
     expect(currentValue).toEqual(expectedValue)
   })
