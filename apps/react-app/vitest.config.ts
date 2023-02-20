@@ -15,5 +15,10 @@ export default defineConfig({
     environment: 'jsdom',
     reporters: 'verbose',
     setupFiles: './src/test/setup.ts',
+    coverage: {
+      exclude: [
+        '**/test/utils/**',
+      ],
+    },
   },
 })

@@ -1,12 +1,17 @@
 name: CI
 
 env:
-  NODE_OPTIONS: --max-old-space-size=6144
   HUSKY: 0
 
 permissions: {}
 
 on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch: {}
 
 concurrency:
