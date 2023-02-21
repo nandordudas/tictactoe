@@ -25,7 +25,9 @@ jobs:
           cache: pnpm
 
       - name: Update dependencies
-        run: npx taze --recursive --write --install
+        run: |
+          npx taze --recursive --write
+          pnpm install --no-frozen-lockfile
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v4
