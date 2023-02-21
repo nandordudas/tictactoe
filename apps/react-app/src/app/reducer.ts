@@ -6,7 +6,10 @@ import counterReducer from './features/counter/counter.slice'
 
 const middlewares: Middleware[] = [thunk]
 
-if (import.meta.env.DEV) {
+/* c8 ignore start */
+const isMetaEnvModeAvailable = ['development'].includes(import.meta.env.MODE)
+
+if (isMetaEnvModeAvailable) {
   const { createLogger } = await import('redux-logger')
 
   const logger = createLogger({
@@ -16,6 +19,7 @@ if (import.meta.env.DEV) {
 
   middlewares.push(logger)
 }
+/* c8 ignore stop */
 
 const reducer = combineReducers({
   [StoreNames.Counter]: counterReducer,
@@ -23,7 +27,7 @@ const reducer = combineReducers({
 
 export const setupStore = (preloadedState: PreloadedState<ReturnType<typeof reducer>> = {}) => {
   return configureStore({
-    devTools: import.meta.env.DEV,
+    devTools: isMetaEnvModeAvailable,
     middleware: getDefaultMiddleware => getDefaultMiddleware().concat(middlewares),
     preloadedState,
     reducer,
