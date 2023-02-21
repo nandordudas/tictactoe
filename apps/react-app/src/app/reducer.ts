@@ -10,14 +10,14 @@ const middlewares: Middleware[] = [thunk]
 const isMetaEnvModeAvailable = ['development'].includes(import.meta.env.MODE)
 
 if (isMetaEnvModeAvailable) {
-  const { createLogger } = await import('redux-logger')
+  import('redux-logger').then(({ createLogger }) => {
+    const logger = createLogger({
+      collapsed: true,
+      timestamp: false,
+    })
 
-  const logger = createLogger({
-    collapsed: true,
-    timestamp: false,
-  })
-
-  middlewares.push(logger)
+    middlewares.push(logger)
+  }).catch(console.error)
 }
 /* c8 ignore stop */
 
