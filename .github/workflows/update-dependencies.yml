@@ -1,0 +1,43 @@
+name: Update dependencies
+
+env:
+  HUSKY: 0
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  update-dependencies:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: corepack enable
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: package.json
+          cache: pnpm
+
+      - name: Update dependencies
+        run: npx taze --recursive --write --install
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          assignees: nandordudas
+          base: main
+          body: Update dependencies
+          branch: update-deps
+          commit-message: 'chore: update deps'
+          delete-branch: true
+          labels: automated-pr
+          reviewers: nandordudas
+          signoff: true
+          title: Update dependencies
+          token: ${{ secrets.TOKEN }}
