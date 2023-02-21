@@ -1,13 +1,13 @@
 name: Semantic Pull Request
 
+permissions: {}
+
 on:
   pull_request_target:
     types:
       - edited
       - opened
       - synchronize
-
-permissions: {}
 
 jobs:
   main:
