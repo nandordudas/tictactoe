@@ -21,12 +21,16 @@ const counterSlice: CounterSlice = createSlice({
     increment(state) {
       incrementByAmount(state, 1)
     },
+    set(state, action) {
+      state.value = action.payload
+    },
   },
 })
 
 export const {
   decrement,
   increment,
+  set,
 } = counterSlice.actions
 
 // INFO: don't like default export
