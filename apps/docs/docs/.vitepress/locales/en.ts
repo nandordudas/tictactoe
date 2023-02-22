@@ -2,19 +2,10 @@ import type { DefaultTheme, LocaleSpecificConfig } from 'vitepress'
 
 export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
   description: 'Popular game solution.',
-  head: [
-    ['link', { rel: 'icon', type: 'image/webp', href: '/logo.webp' }],
-    ['meta', { name: 'theme-color', content: '#876d3c' }],
-  ],
-
   themeConfig: {
-    logo: '/logo.webp',
-
     nav: nav(),
-
     sidebar: {
       '/guide/': sidebarGuide(),
-      '/usage/': sidebarUsage(),
     },
   },
 }
@@ -22,7 +13,6 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
 function nav(): DefaultTheme.NavItem[] {
   return [
     { text: 'Guide', link: '/guide/getting-started', activeMatch: '/guide/' },
-    { text: 'Usage', link: '/usage/structure', activeMatch: '/usage/' },
   ]
 }
 
@@ -37,16 +27,11 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
         { text: 'Using Devcontainers', link: '/guide/using-devcontainers' },
       ],
     },
-  ]
-}
-
-function sidebarUsage(): DefaultTheme.SidebarItem[] {
-  return [
     {
       text: 'Usage',
       collapsed: false,
       items: [
-        { text: 'Structure', link: '/usage/structure' },
+        { text: 'Structure', link: '/guide/usage/structure' },
       ],
     },
   ]
