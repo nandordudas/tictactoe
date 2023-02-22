@@ -1,0 +1,31 @@
+openapi: 3.0.2
+
+info:
+  title: API
+  version: 0.1.0
+
+servers:
+  - url: http://localhost:3333
+
+paths:
+  /count:
+    get:
+      tags:
+        - count
+      operationId: getCount
+      responses:
+        200:
+          description: Get count value
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Count'
+
+components:
+  schemas:
+    Count:
+      type: object
+      properties:
+        value:
+          type: integer
+          example: 12
