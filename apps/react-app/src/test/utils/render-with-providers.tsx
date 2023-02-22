@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import { setupStore } from '~/app/reducer'
 import type { AppStore, RootState } from '~/app/type'
 
-interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
+interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries' | 'wrapper'> {
   preloadedState?: PreloadedState<RootState>
   store?: AppStore
 }
@@ -25,7 +25,7 @@ export const renderWithProviders = (
   return {
     store,
     ...render(ui, {
-      wrapper: ({ children }: PropsWithChildren<typeof ui['props']>) => (
+      wrapper: ({ children }: PropsWithChildren) => (
         <Suspense fallback={null}>
           <Provider store={store}>
             {children}
