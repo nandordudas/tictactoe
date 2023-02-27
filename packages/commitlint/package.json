@@ -20,7 +20,7 @@
     "@commitlint/config-conventional": "^17.4.4",
     "@commitlint/types": "^17.4.4",
     "@workspace/eslint-config": "workspace:*",
-    "eslint": "^8.34.0",
+    "eslint": "^8.35.0",
     "husky": "^8.0.3"
   },
   "eslintConfig": {
