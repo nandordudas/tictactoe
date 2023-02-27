@@ -21,7 +21,7 @@
   "devDependencies": {
     "@workspace/commitlint-config": "workspace:*",
     "@workspace/eslint-config": "workspace:*",
-    "bumpp": "^8.2.1"
+    "bumpp": "^9.0.0"
   },
   "eslintConfig": {
     "extends": "@workspace"
