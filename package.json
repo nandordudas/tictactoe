@@ -2,7 +2,7 @@
   "name": "tictactoe",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@7.28.0",
+  "packageManager": "pnpm@7.29.0",
   "license": "MIT",
   "engines": {
     "node": ">=18.14.0",
