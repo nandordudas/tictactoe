@@ -28,6 +28,7 @@
     "@vitejs/plugin-react-swc": "^3.2.0",
     "@vitest/coverage-c8": "^0.29.2",
     "@workspace/eslint-config": "workspace:*",
+    "@workspace/msw-open-api": "workspace:*",
     "@workspace/tsconfig": "workspace:*",
     "@workspace/utils": "workspace:*",
     "eslint": "^8.35.0",

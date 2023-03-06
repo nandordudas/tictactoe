@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "msw Open API",
+  "extends": "@workspace/tsconfig/strictest.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "types": [
+      "@total-typescript/ts-reset",
+      "vitest/globals"
+    ]
+  },
+  "include": [
+    "./src/**/*"
+  ]
+}

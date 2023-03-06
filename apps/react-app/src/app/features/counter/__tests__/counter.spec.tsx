@@ -4,7 +4,7 @@ import { Counter } from '~/app/features/counter/components/counter/counter'
 import { CounterTestIds } from '~/app/features/counter/components/counter/counter.constants'
 import { initialCounterState } from '~/app/features/counter/counter.state'
 import type { RootState } from '~/app/type'
-import { screen, userEvent } from '~/test/utils'
+import { act, screen, userEvent } from '~/test/utils'
 import { renderWithProviders } from '~/test/utils/render-with-providers'
 
 describe('Counter', () => {
@@ -46,5 +46,34 @@ describe('Counter', () => {
     await userEvent.click(decrementButton)
 
     expect(screen.getByText(expectedValue)).toBeInTheDocument()
+  })
+
+  it('should increment counter if value is odd', async () => {
+    const expectedValue = 2
+
+    renderWithProviders(<Counter />, { preloadedState })
+
+    const incrementButton = await screen.findByTestId(CounterTestIds.increment)
+    const incrementIfOddThunkButton = await screen.findByTestId(CounterTestIds.incrementIfOddThunk)
+
+    await userEvent.click(incrementButton)
+    await userEvent.click(incrementIfOddThunkButton)
+
+    expect(screen.getByText(expectedValue)).toBeInTheDocument()
+  })
+
+  it('should fetch count', async () => {
+    renderWithProviders(<Counter />, { preloadedState })
+
+    const fetchCountAsyncThunkButton = await screen.findByTestId(CounterTestIds.fetchCountAsyncThunk)
+
+    await userEvent.click(fetchCountAsyncThunkButton)
+
+    act(async () => {
+      const expectedValue = 12
+      const valueButton = await screen.findByTestId(CounterTestIds.value)
+
+      expect(valueButton.textContent).toBe(expectedValue)
+    })
   })
 })
